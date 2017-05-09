@@ -1,0 +1,54 @@
+
+#include <IRremote.h>
+
+int IRpin = 11;
+IRrecv irrecv(IRpin);
+decode_results results;
+
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn(); // Start the receiver
+}
+
+void loop() 
+{
+  if (irrecv.decode(&results)) 
+    {
+      Serial.println(results.value, DEC); // Print the Serial 'results.value'
+      irrecv.resume();   // Receive the next value
+    }
+  
+  
+}
+/* --------------------------------------------------------------------------------------------------------*/
+
+#include <IRremote.h>
+
+int ir = 2;
+int lsr = 4;
+int crt = 6;
+IRrecv irrecv(ir);
+decode_results results;
+
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn(); // Start the receiver
+}
+
+void loop() 
+{
+  if (irrecv.decode(&results)) 
+  {
+    Serial.println(results.value);
+    while (results.value == VAL)
+    {
+      
+    }
+        
+    irrecv.resume();
+  }
+  
+  
+}
